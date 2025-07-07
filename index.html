@@ -3,15 +3,172 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>9x2=3の部屋 - 資料集</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    integrity="sha512-M9b6+JwXoZTGlYFWcbZgA9+aMQWUzHlB8lStWZpZkI1Ev3FYlQx9oMLOZqsy4p3TTsVgrm2bzovBEPJ8lqxt1w=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+  <title>9x2=3の部屋</title>
+
+  <!-- Font & Icon -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+
+  <style>
+    :root {
+      --accent: #6c63ff;
+      --bg-light: #f9f9f9;
+      --text: #2e2e2e;
+      --shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: white;
+      padding: 2rem 1.5rem;
+      border-bottom: 1px solid #eee;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.25rem;
+      color: var(--accent);
+    }
+
+    header p {
+      margin-top: 0.4rem;
+      font-size: 1rem;
+      color: #666;
+    }
+
+    header nav {
+      margin-top: 1rem;
+    }
+
+    header nav a {
+      color: var(--accent);
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.2s ease;
+    }
+
+    header nav a:hover {
+      opacity: 0.7;
+    }
+
+    .hero {
+      position: relative;
+      max-height: 520px;
+      overflow: hidden;
+      border-radius: var(--radius);
+      margin: 2rem auto;
+      max-width: 1080px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(65%);
+      display: block;
+    }
+
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-text p {
+      font-size: 1.25rem;
+      color: #ddd;
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .categories h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: var(--accent);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .category-grid li {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .category-grid li:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .category-grid a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .category-grid i {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+      background-color: #fff;
+      color: #aaa;
+      font-size: 0.9rem;
+      border-top: 1px solid #eee;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -25,6 +182,10 @@
 
   <div class="hero">
     <img src="https://kunisan-assets.s3.ap-northeast-1.amazonaws.com/%E3%82%B9%E3%82%A4%E3%82%B9.jpg" alt="著者と牛の写真" />
+    <div class="hero-text">
+      <h1>知の交差点へようこそ</h1>
+      <p>数・統計・物理・思考をつなぐ記録集</p>
+    </div>
   </div>
 
   <main>
@@ -45,7 +206,5 @@
   <footer>
     <p>&copy; 2025 Kunihiro Suzuki / 9x2=3の部屋</p>
   </footer>
-
-  <script src="js/main.js"></script>
 </body>
 </html>
