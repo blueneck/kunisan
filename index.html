@@ -1,12 +1,51 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Kunisan サイト</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9x2=3の部屋 - 資料集</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-M9b6+JwXoZTGlYFWcbZgA9+aMQWUzHlB8lStWZpZkI1Ev3FYlQx9oMLOZqsy4p3TTsVgrm2bzovBEPJ8lqxt1w=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 </head>
 <body>
-  <h1>こんにちは、Kunisan！</h1>
-  <p>これはGitHub Pagesで公開されたページです。</p>
+  <header>
+    <h1>9x2=3の部屋</h1>
+    <p>半導体・統計・数学・物理をつなぐ知のアーカイブ</p>
+    <nav>
+      <a href="index.html">ホーム</a>
+      <a href="about.html">著者紹介</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <img src="https://kunisan-assets.s3.ap-northeast-1.amazonaws.com/%E3%82%B9%E3%82%A4%E3%82%B9.jpg" alt="著者と牛の写真" />
+  </div>
+
+  <main>
+    <section class="categories">
+      <h2>カテゴリ一覧</h2>
+      <ul class="category-grid">
+        <li><a href="categories/math.html"><i class="fas fa-square-root-alt"></i> 数学</a></li>
+        <li><a href="categories/statistics.html"><i class="fas fa-chart-bar"></i> 統計学</a></li>
+        <li><a href="categories/queueing.html"><i class="fas fa-stream"></i> 待ち行列</a></li>
+        <li><a href="categories/semiconductor.html"><i class="fas fa-microchip"></i> 半導体</a></li>
+        <li><a href="categories/analysis-etc.html"><i class="fas fa-book-open"></i> その他の解析</a></li>
+        <li><a href="categories/essays.html"><i class="fas fa-feather-alt"></i> 手記・エッセイ</a></li>
+        <li><a href="categories/merasu.html"><i class="fas fa-running"></i> 走れメラス</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Kunihiro Suzuki / 9x2=3の部屋</p>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
