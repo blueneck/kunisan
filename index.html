@@ -1,210 +1,312 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>9x2=3の部屋</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>9x2=3の部屋 - Hero & Magazine Layout</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
 
-  <!-- Font & Icon -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+    <style>
+        /* --- Design System (Magazine Grid) --- */
+        :root {
+            --color-bg: #ffffff;
+            --color-surface: #f9f9f9;
+            --color-text: #222222;
+            --color-text-muted: #666666;
+            --color-accent: #1d4ed8; /* A deep, professional blue */
+            --color-border: #e0e0e0;
+            
+            --font-serif: 'Lora', serif;
+            --font-sans: 'Inter', sans-serif;
+            
+            --container-width: 1200px;
+            --border-radius: 8px;
+            --transition: 0.3s ease;
+        }
 
-  <style>
-    :root {
-      --accent: #6c63ff;
-      --bg-light: #f9f9f9;
-      --text: #2e2e2e;
-      --shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-      --radius: 16px;
-    }
+        /* --- Base & Reset --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
 
-    body {
-      font-family: 'Noto Sans JP', sans-serif;
-      background-color: var(--bg-light);
-      color: var(--text);
-      line-height: 1.6;
-    }
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
 
-    header {
-      background-color: white;
-      padding: 2rem 1.5rem;
-      border-bottom: 1px solid #eee;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: var(--shadow);
-    }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.25rem;
-      color: var(--accent);
-    }
+        /* --- Header --- */
+        .site-header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--color-border);
+            background-color: var(--color-bg);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .site-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        .main-nav a {
+            margin-left: 24px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
 
-    header p {
-      margin-top: 0.4rem;
-      font-size: 1rem;
-      color: #666;
-    }
+        /* --- Hero Section --- */
+        .hero-section {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+        }
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 20, 40, 0.6);
+            z-index: -1;
+        }
+        .hero-content {
+            animation: fadeInHero 1.5s ease-out forwards;
+        }
+        @keyframes fadeInHero {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
 
-    header nav {
-      margin-top: 1rem;
-    }
+        /* --- Main Content --- */
+        .main-content {
+            padding: 80px 0;
+        }
 
-    header nav a {
-      color: var(--accent);
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: 600;
-      transition: opacity 0.2s ease;
-    }
+        .category-showcase {
+            display: grid;
+            gap: 80px;
+        }
 
-    header nav a:hover {
-      opacity: 0.7;
-    }
+        .category-block {
+            /* Each category is a block */
+        }
 
-    .hero {
-      position: relative;
-      max-height: 520px;
-      overflow: hidden;
-      border-radius: var(--radius);
-      margin: 2rem auto;
-      max-width: 1080px;
-      box-shadow: var(--shadow);
-    }
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 2px solid var(--color-text);
+            padding-bottom: 12px;
+            margin-bottom: 32px;
+        }
+        .category-title {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+        }
+        .category-link {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-accent);
+        }
 
-    .hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(65%);
-      display: block;
-    }
+        .article-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+        }
 
-    .hero-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      text-align: center;
-      backdrop-filter: blur(6px);
-    }
+        /* Featured Article */
+        .featured-article .article-card {
+            display: block;
+        }
+        .featured-article .article-image {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            background-color: var(--color-border);
+            border-radius: var(--border-radius);
+            margin-bottom: 16px;
+        }
+        .featured-article .article-title {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+        .featured-article .article-excerpt {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+        }
 
-    .hero-text h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-    }
+        /* Secondary Articles */
+        .secondary-articles-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .secondary-article-item a {
+            display: block;
+            padding: 16px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            transition: border-color var(--transition), background-color var(--transition);
+        }
+        .secondary-article-item a:hover {
+            border-color: var(--color-accent);
+            background-color: #f5f8ff;
+        }
+        .secondary-article-item .article-title {
+            font-weight: 500;
+        }
 
-    .hero-text p {
-      font-size: 1.25rem;
-      color: #ddd;
-    }
+        /* --- Footer --- */
+        .site-footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--color-border);
+            background-color: var(--color-surface);
+        }
 
-    main {
-      max-width: 1080px;
-      margin: 3rem auto;
-      padding: 0 1.5rem;
-    }
-
-    .categories h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      color: var(--accent);
-    }
-
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .category-grid li {
-      background: white;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .category-grid li:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
-    }
-
-    .category-grid a {
-      text-decoration: none;
-      color: var(--text);
-      font-size: 1.2rem;
-      font-weight: 600;
-    }
-
-    .category-grid i {
-      font-size: 2rem;
-      margin-bottom: 0.75rem;
-      color: var(--accent);
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 4rem;
-      background-color: #fff;
-      color: #aaa;
-      font-size: 0.9rem;
-      border-top: 1px solid #eee;
-    }
-  </style>
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            .secondary-articles-list {
+                margin-top: 32px;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .main-content { padding: 48px 0; }
+            .category-title { font-size: 1.5rem; }
+            .featured-article .article-title { font-size: 1.5rem; }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>9x2=3の部屋</h1>
-    <p>半導体・統計・数学・物理をつなぐ知のアーカイブ</p>
-    <nav>
-      <a href="index.html">ホーム</a>
-      <a href="about.html">著者紹介</a>
-    </nav>
-  </header>
 
-  <div class="hero">
-    <img src="https://kunisan-assets.s3.ap-northeast-1.amazonaws.com/%E3%82%B9%E3%82%A4%E3%82%B9.jpg" alt="著者と牛の写真" />
-    <div class="hero-text">
-      <h1>知の交差点へようこそ</h1>
-      <p>数・統計・物理・思考をつなぐ記録集</p>
-    </div>
-  </div>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo"><a href="#">9x2=3の部屋</a></div>
+            <nav class="main-nav">
+                <a href="#">ホーム</a>
+                <a href="#">著者紹介</a>
+            </nav>
+        </div>
+    </header>
 
-  <main>
-    <section class="categories">
-      <h2>カテゴリ一覧</h2>
-      <ul class="category-grid">
-        <li><a href="categories/math.html"><i class="fas fa-square-root-alt"></i> 数学</a></li>
-        <li><a href="categories/statistics.html"><i class="fas fa-chart-bar"></i> 統計学</a></li>
-        <li><a href="categories/queueing.html"><i class="fas fa-stream"></i> 待ち行列</a></li>
-        <li><a href="categories/semiconductor.html"><i class="fas fa-microchip"></i> 半導体</a></li>
-        <li><a href="categories/analysis-etc.html"><i class="fas fa-book-open"></i> その他の解析</a></li>
-        <li><a href="categories/essays.html"><i class="fas fa-feather-alt"></i> 手記・エッセイ</a></li>
-        <li><a href="categories/merasu.html"><i class="fas fa-running"></i> 走れメラス</a></li>
-      </ul>
+    <section class="hero-section">
+        <img src="/placeholder.svg?width=1920&height=1080" alt="Abstract network of knowledge" class="hero-background">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">知の探求と、<br>思索の記録。</h1>
+        </div>
     </section>
-  </main>
 
-  <footer>
-    <p>&copy; 2025 Kunihiro Suzuki / 9x2=3の部屋</p>
-  </footer>
+    <main class="main-content">
+        <div class="container">
+            <div class="category-showcase">
+
+                <!-- Category: 数学 -->
+                <section class="category-block">
+                    <header class="category-header"><h2 class="category-title">数学</h2><a href="#" class="category-link">すべて見る &rarr;</a></header>
+                    <div class="article-grid">
+                        <div class="featured-article"><a href="#" class="article-card"><img src="/placeholder.svg?width=800&height=450" alt="" class="article-image"><h3 class="article-title">ゼータ関数の神秘：リーマン予想への誘い</h3><p class="article-excerpt">素数の分布から宇宙の謎まで、数学の最も深遠な問題の一つであるリーマン予想の核心に迫ります。</p></a></div>
+                        <ul class="secondary-articles-list">
+                            <li class="secondary-article-item"><a href="#"><h4 class="article-title">フーリエ変換が拓く世界</h4></a></li>
+                            <li class="secondary-article-item"><a href="#"><h4 class="article-title">群論入門：対称性の数学</h4></a></li>
+                            <li class="secondary-article-item"><a href="#"><h4 class="article-title">トポロジーとは何か？</h4></a></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Category: 統計学 -->
+                <section class="category-block">
+                    <header class="category-header"><h2 class="category-title">統計学</h2><a href="#" class="category-link">すべて見る &rarr;</a></header>
+                    <div class="article-grid">
+                        <div class="featured-article"><a href="#" class="article-card"><img src="/placeholder.svg?width=800&height=450" alt="" class="article-image"><h3 class="article-title">ベイズ統計学の実践：不確実性を味方につける</h3><p class="article-excerpt">p値の限界を超えて。現代的なデータ分析に不可欠なベイズ的アプローチの考え方と応用例を紹介します。</p></a></div>
+                        <ul class="secondary-articles-list">
+                            <li class="secondary-article-item"><a href="#"><h4 class="article-title">機械学習と統計モデルの関係</h4></a></li>
+                            <li class="secondary-article-item"><a href="#"><h4 class="article-title">因果推論への第一歩</h4></a></li>
+                            <li class="secondary-article-item"><a href="#"><h4 class="article-title">時系列分析の基礎</h4></a></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- (他のカテゴリも同様に続きます) -->
+                <section class="category-block">
+                    <header class="category-header"><h2 class="category-title">半導体</h2><a href="#" class="category-link">すべて見る &rarr;</a></header>
+                    <div class="article-grid">
+                        <div class="featured-article"><a href="#" class="article-card"><img src="/placeholder.svg?width=800&height=450" alt="" class="article-image"><h3 class="article-title">EUVリソグラフィの最前線：次世代チップ製造の鍵</h3><p class="article-excerpt">ムーアの法則を延命させる究極の技術、極端紫外線リソグラフィ。その原理と課題を徹底解説します。</p></a></div>
+                        <ul class="secondary-articles-list">
+                            <li class="secondary-article-item"><a href="#"><h4 class="article-title">FinFETからGAAへの進化</h4></a></li>
+                            <li class="secondary-article-item"><a href="#"><h4 class="article-title">半導体メモリの種類と特徴</h4></a></li>
+                            <li class="secondary-article-item"><a href="#"><h4 class="article-title">化合物半導体の可能性</h4></a></li>
+                        </ul>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 Kunihiro Suzuki / 9x2=3の部屋</p>
+        </div>
+    </footer>
+
 </body>
 </html>
